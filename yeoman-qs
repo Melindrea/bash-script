@@ -19,3 +19,8 @@ echo "Changing owner to www-data and giving write rights to the group"
 sudo chown -R www-data:www-data .
 sudo chmod -R g+w .
 
+echo "Installing common grunt plugins"
+npm install grunt-beautify
+npm install grunt-modernizr
+npm install grunt-zip
+
