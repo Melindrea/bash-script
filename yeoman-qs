@@ -1,0 +1,21 @@
+#!/bin/bash
+echo "Creating folder " + $1
+mkdir $1 && cd $1
+yeoman init quickstart
+
+echo "Updating repository gitignore and setting up .gitignore"
+cd ~/Dropbox/repositories/gitignore && git pull && cd -
+cat ~/Dropbox/repositories/gitignore/Global/Linux.gitignore ~/Dropbox/repositories/gitignore/Global/OSX.gitignore ~/Dropbox/repositories/gitignore/Global/SASS.gitignore ~/Dropbox/repositories/gitignore/Global/Windows.gitignore ~/Dropbox/repositories/gitignore/Node.gitignore > .gitignore
+echo "" >> .gitignore
+echo "dist" >> .gitignore
+echo "temp" >> .gitignore
+echo "components" >> .gitignore
+
+git init
+git add .
+git commit -m "Initial commit"
+git status
+echo "Changing owner to www-data and giving write rights to the group"
+sudo chown -R www-data:www-data .
+sudo chmod -R g+w .
+

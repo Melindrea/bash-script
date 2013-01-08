@@ -1,0 +1,8 @@
+#!/bin/bash
+
+shopt -s nullglob
+for FILE in $1; do
+    if [ -f $FILE ]; then
+        gedit $FILE &
+    fi
+done

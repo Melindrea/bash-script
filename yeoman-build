@@ -1,0 +1,9 @@
+#!/bin/bash
+yeoman js
+yeoman build
+rm -r dist/.sass-cache 
+rm -r dist/styles/*.dev 
+rm dist/styles/*.sass 
+rm dist/styles/*.scss 
+rm -r dist/scripts/vendor/bootstrap
+
