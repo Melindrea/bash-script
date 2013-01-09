@@ -11,7 +11,8 @@ dist/*/*/*.dev*
 dist/*/*/*/*.dev*
 dist/components
 dist/*~
-dist/dist"
+dist/dist
+dist/app"
 for f in $FILES
 do
 	if [ -e $f ]; then
