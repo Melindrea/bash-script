@@ -1,26 +1,40 @@
 #!/bin/bash
-echo "Creating folder " + $1
-mkdir $1 && cd $1
+echo "Creating folder $1"
+mkdir -p $1 && cd $1
 yeoman init quickstart
 
 echo "Updating repository gitignore and setting up .gitignore"
 cd ~/Dropbox/repositories/gitignore && git pull && cd -
-cat ~/Dropbox/repositories/gitignore/Global/Linux.gitignore ~/Dropbox/repositories/gitignore/Global/OSX.gitignore ~/Dropbox/repositories/gitignore/Global/SASS.gitignore ~/Dropbox/repositories/gitignore/Global/Windows.gitignore ~/Dropbox/repositories/gitignore/Node.gitignore > .gitignore
-echo "" >> .gitignore
-echo "dist" >> .gitignore
-echo "temp" >> .gitignore
-echo "components" >> .gitignore
+cat ~/Dropbox/repositories/gitignore/Global/Linux.gitignore ~/Dropbox/repositories/gitignore/Global/OSX.gitignore ~/Dropbox/repositories/gitignore/Global/SASS.gitignore ~/Dropbox/repositories/gitignore/Global/Windows.gitignore ~/Dropbox/repositories/gitignore/Node.gitignore ~/Dropbox/repositories/bash-script/Yeoman.gitignore > .gitignore
 
+echo "Installing common grunt plugins and adding them to the package.json as devDependencies"
+npm install grunt-beautify --save-dev
+npm install grunt-modernizr --save-dev
+
+echo "Changing around Modernizr and jQuery (moving, etc), as well as installing selectivizr"
+yeoman install jquery
+yeoman install modernizr
+yeoman install selectivizr
+
+echo "Removing the current jQuery/Modernizr and copying the dev version of modernizr and the min version of jquery to app/vendor/js"
+rm -r app/scripts/vendor
+
+mkdir -p app/vendor/js
+cp components/modernizr/modernizr.js app/vendor/js/modernizr.dev.js
+cp components/jquery/jquery.min.js app/vendor/js/jquery.min.js
+echo "Minifying Selectvizr from components to app/vendor/js"
+uglifyjs -o app/vendor/js/selectivizr.min.js components/selectivizr/selectivizr.js
+
+cp ~/Dropbox/repositories/bash-script/GRUNTFILE-CHANGES GRUNTFILE-CHANGES
+
+#Finally, initialize git. This is the last task to avoid some of the stuff needing to be re-committed
 git init
-git add .
-git commit -m "Initial commit"
-git status
-echo "Changing owner to www-data and giving write rights to the group"
-sudo chown -R www-data:www-data .
-sudo chmod -R g+w .
+#git add .
+#git commit -m "Initial commit"
+echo "Now the basics are done! Remember to update the index.html and 404.html files to reflect the move of libraries from scripts/vendor => vendor/js"
+echo "You will also need to update the Gruntfile.js, see GRUNTFILE-CHANGES"
+echo "JS files should be named *.dev.js during development, to be concatenated to something.js. Any development Sass-folders should be named *.dev."
+echo "Files with .dev in the name will be deleted from the dist folder when building using yeoman-build"
+echo "Update package.json with proper information as well as the devDependencies (grunt latest)"
 
-echo "Installing common grunt plugins"
-npm install grunt-beautify
-npm install grunt-modernizr
-npm install grunt-zip
 

@@ -1,9 +1,23 @@
 #!/bin/bash
+yeoman modernizr
 yeoman js
 yeoman build
-rm -r dist/.sass-cache 
-rm -r dist/styles/*.dev 
-rm dist/styles/*.sass 
-rm dist/styles/*.scss 
-rm -r dist/scripts/vendor/bootstrap
+FILES="dist/.sass-cache
+dist/styles/*.scss
+dist/styles/*.sass
+dist/*.dev*
+dist/*/*.dev*
+dist/*/*/*.dev*
+dist/*/*/*/*.dev*
+dist/components
+dist/*~
+dist/dist"
+for f in $FILES
+do
+	if [ -e $f ]; then
+    	echo "Cleaning up $f"
+		rm -r $f 
+	fi
+done
 
+zip -r dist dist
