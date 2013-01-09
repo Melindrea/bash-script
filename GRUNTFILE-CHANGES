@@ -6,16 +6,6 @@ js: {
 },
 To the compass task, add 'modernizr' after 'compass'
 
-//Beautify tasks
-beautify: {
-    files: '<config:lint.files>'
-},
-beautifier: {
-    options: {
-        indentSize: 4
-    }
-},
-        
 //JShints, replace globals with the following configuration
 globals: {
     jQuery: false,
@@ -26,13 +16,16 @@ globals: {
     k: true
 }
 
-//Replace concat with the following configuration
-concat: {
-    main: {
-        src: ['app/scripts/**/*.dev.js'],
-        dest: 'app/scripts/main.js'
+//Beautify tasks
+beautify: {
+    files: '<config:lint.files>'
+},
+beautifier: {
+    options: {
+        indentSize: 4
     }
-}
+},
+        
 
 //Add the modernizr task with the following configuration
 modernizr: {
@@ -89,6 +82,6 @@ modernizr: {
 
 //After config, add the following
 grunt.loadNpmTasks('grunt-beautify');
-grunt.loadNpmTasks("grunt-modernizr");
+grunt.loadNpmTasks('grunt-modernizr');
 
-grunt.registerTask('js', 'beautify lint concat');
+grunt.registerTask('js', 'beautify lint');
