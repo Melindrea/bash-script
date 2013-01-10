@@ -78,10 +78,14 @@ modernizr: {
 
     // Files added here will be excluded when looking for Modernizr refs.
     "excludeFiles": ['temp/**/*', 'dist/**/*', 'node_modules/**/*', 'test/**/*', 'components/**/*', 'app/components/**/*']
+},
+shell: {
+
 }
 
 //After config, add the following
 grunt.loadNpmTasks('grunt-beautify');
 grunt.loadNpmTasks('grunt-modernizr');
+grunt.loadNpmTasks('grunt-shell');
 
 grunt.registerTask('js', 'beautify lint');

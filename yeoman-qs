@@ -17,6 +17,7 @@ cat ~/Dropbox/repositories/gitignore/Global/Linux.gitignore ~/Dropbox/repositori
 echo "Installing common grunt plugins and adding them to the package.json as devDependencies"
 npm install grunt-beautify --save-dev
 npm install grunt-modernizr --save-dev
+npm install grunt-shell --save-dev
 
 echo "Changing around Modernizr and jQuery (moving, etc), as well as installing selectivizr"
 yeoman install jquery
