@@ -6,6 +6,5 @@ app/components
 runner
 lib
 spec
-dist.zip
-GRUNTFILE-CHANGES
+assets
 

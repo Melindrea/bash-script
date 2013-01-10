@@ -1,4 +1,11 @@
 #!/bin/bash
+E_BADARGS=65
+
+if [ -z "$1" ]
+	then
+  		echo "Usage: `basename $0` /path/to/folder/to/create"
+  	exit $E_BADARGS  # No arg? Bail out.
+fi
 echo "Creating folder $1"
 mkdir -p $1 && cd $1
 yeoman init quickstart
@@ -25,7 +32,7 @@ cp components/jquery/jquery.min.js app/vendor/js/jquery.min.js
 echo "Minifying Selectvizr from components to app/vendor/js"
 uglifyjs -o app/vendor/js/selectivizr.min.js components/selectivizr/selectivizr.js
 
-cp ~/Dropbox/repositories/bash-script/GRUNTFILE-CHANGES GRUNTFILE-CHANGES
+cp ~/Dropbox/repositories/bash-script/GRUNTFILE-CHANGES assets/GRUNTFILE-CHANGES
 
 #Finally, initialize git. This is the last task to avoid some of the stuff needing to be re-committed
 git init
