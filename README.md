@@ -19,3 +19,11 @@ Requires yeoman (duh), as well as the repository [Gitignore](https://github.com/
 Yeoman-qs creates a quickstart yeoman project and needs the argument of a folder to be created as the root of the project, ex `yeoman-qs /home/melindrea/projects/my-project`. It also creates a .gitignore file in that folder and creates a git repository with the initial commit, as well as changing around the jquery and modernizr folders (moving scripts/vendor => vendor/js)
 
 Yeoman-build runs a few commands before `yeoman build` and then cleans up files that shouldn't be in the dist, like Sass-files and the components folder.
+
+### www-permissions #
+Sets the permissions (recursively) of the particular folder to www-data:www-data and sets the rights for the group to write. 
+
+### gedit-plugin #
+Copies a gedit plugin using the standard format from a specified folder to the gedit/plugins folder under $home
+
+

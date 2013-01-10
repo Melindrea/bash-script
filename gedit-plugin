@@ -1,0 +1,13 @@
+#!/bin/bash
+# Small script to install gedit plugin
+
+SOURCE=$1
+NAME=$2
+TARGET=$HOME/.local/share/gedit/plugins
+
+echo "Copying directory ${NAME} from ${SOURCE} to ${TARGET}..."
+cp -r ${SOURCE}/${NAME} ${TARGET}/${NAME}
+
+echo "Copying file ${NAME}.plugin from ${SOURCE} to ${TARGET}..."
+cp ${SOURCE}/${NAME}.plugin ${TARGET}/${NAME}.plugin
+

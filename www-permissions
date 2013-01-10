@@ -1,0 +1,5 @@
+#!/bin/bash
+# Small script to chown and chmod a folder to www-data
+DIR=$1
+
+sudo chmod -R g+w ${DIR} && sudo chown -R www-data:www-data ${DIR}

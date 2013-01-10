@@ -1,0 +1,7 @@
+#!/bin/bash
+cd ~/Dropbox/repositories/CSScomb
+git pull
+make buildCli
+TARGET=~/bin/csscomb.php
+echo "Copying csscomb.php to $TARGET"
+cp ~/Dropbox/repositories/CSScomb/build/cli/csscomb.php $TARGET
