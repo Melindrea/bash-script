@@ -3,7 +3,7 @@ E_BADARGS=65
 
 if [ -z "$1" ]
 	then
-  		echo "Usage: `basename $0` /path/to/folder/to/create"
+  		echo "Usage: `basename $0` /path/to/folder/to/create <optional: package name> <optional: author>"
   	exit $E_BADARGS  # No arg? Bail out.
 fi
 echo "Creating folder $1"
@@ -14,7 +14,13 @@ echo "Updating repository gitignore and setting up .gitignore"
 cd ~/Dropbox/repositories/gitignore && git pull && cd -
 cat ~/Dropbox/repositories/gitignore/Global/Linux.gitignore ~/Dropbox/repositories/gitignore/Global/OSX.gitignore ~/Dropbox/repositories/gitignore/Global/SASS.gitignore ~/Dropbox/repositories/gitignore/Global/Windows.gitignore ~/Dropbox/repositories/gitignore/Node.gitignore ~/Dropbox/repositories/bash-script/Yeoman.gitignore > .gitignore
 
-echo "Installing common grunt plugins and adding them to the package.json as devDependencies"
+if [ -z "$2"]; then
+	PACKAGE=$1
+fi
+
+mk-package-json $PACKAGE $3
+
+echo "Installing common grunt plugins"
 npm install grunt-beautify --save-dev
 npm install grunt-modernizr --save-dev
 npm install grunt-shell --save-dev
@@ -33,7 +39,7 @@ cp components/jquery/jquery.min.js app/vendor/js/jquery.min.js
 echo "Minifying Selectvizr from components to app/vendor/js"
 uglifyjs -o app/vendor/js/selectivizr.min.js components/selectivizr/selectivizr.js
 
-cp ~/Dropbox/repositories/bash-script/GRUNTFILE-CHANGES assets/GRUNTFILE-CHANGES
+mkdir assets && cp ~/Dropbox/repositories/bash-script/GRUNTFILE-CHANGES assets/GRUNTFILE-CHANGES
 
 #Finally, initialize git. This is the last task to avoid some of the stuff needing to be re-committed
 git init
@@ -43,6 +49,6 @@ echo "Now the basics are done! Remember to update the index.html and 404.html fi
 echo "You will also need to update the Gruntfile.js, see GRUNTFILE-CHANGES"
 echo "JS files should be named *.dev.js during development, to be concatenated to something.js. Any development Sass-folders should be named *.dev."
 echo "Files with .dev in the name will be deleted from the dist folder when building using yeoman-build"
-echo "Update package.json with proper information as well as the devDependencies (grunt latest)"
+echo "Update package.json with more information"
 
 

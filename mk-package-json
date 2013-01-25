@@ -1,0 +1,33 @@
+#!/bin/bash
+E_BADARGS=65
+
+if [ -z "$1" ]
+	then
+  		echo "Usage: `basename $0` <package name> <optional: author> <optional: path>"
+  	exit $E_BADARGS  # No arg? Bail out.
+fi
+
+NAME=$1
+if [ -d "$3" ]; then
+	FILE=${3%/}"/package.json"
+else
+	FILE="package.json"
+fi
+
+if [ -z "$2" ]; then
+	AUTHOR="Marie Hogebrandt"
+else
+	AUTHOR=$2
+fi
+
+echo "Writing to "$FILE
+#echo "{" > $FILE
+#echo $'\t'"\"author\": \"$AUTHOR\"," >> $FILE
+#echo $'\t'"\"name\": \"$1\"," >> $FILE
+#echo $'\t'"\"version\": \"0.0.1\"," >> $FILE
+#echo $'\t'"\"dependencies\": {}," >> $FILE
+#echo $'\t'"\"devDependencies\": {" >> $FILE
+#echo $'\t'$'\t'"\"grunt\": \"latest\"" >> $FILE
+#echo $'\t'"}" >> $FILE
+#echo "}" >> $FILE
+
