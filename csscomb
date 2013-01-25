@@ -1,5 +1,7 @@
 #!/bin/bash
 INPUT=$1
-OUTPUT=$2
+if [ -z "$2"]; then
+	INPUT = "$INPUT -o $2"
+fi
 
-php ~/bin/csscomb.php -i ${INPUT} -o ${OUTPUT}
+php ~/bin/csscomb.php -i ${INPUT}
