@@ -32,6 +32,7 @@ Runs [CSScomb](https://github.com/miripiruni/CSScomb) and updates it (duh)
 ### mk-package-json #
 Help script for yeoman-qs, overwrites the default package.json with one that has a bit more information. Needs a name, has optional arguments of author and path.
 
-
+### find-string #
+Wrapper around `grep -Hril "<string-to-find>"` either in the current directory, or in a directory sent through the second parameter
 
 
