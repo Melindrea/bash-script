@@ -18,6 +18,8 @@ if [ -z "$2"]; then
 	PACKAGE=$1
 fi
 
+touch README.md
+
 mk-package-json $PACKAGE $3
 
 echo "Installing common grunt plugins"
@@ -33,10 +35,14 @@ yeoman install selectivizr
 echo "Removing the current jQuery/Modernizr and copying the dev version of modernizr and the min version of jquery to app/vendor/js"
 rm -r app/scripts/vendor
 
+echo "Bringing in normalize.css as _normalize.scss"
+mkdir -p app/styles
+normalize app/styles
+
 mkdir -p app/vendor/js
 cp components/modernizr/modernizr.js app/vendor/js/modernizr.dev.js
 cp components/jquery/jquery.min.js app/vendor/js/jquery.min.js
-echo "Minifying Selectvizr from components to app/vendor/js"
+echo "Minifying Selectivizr from components to app/vendor/js"
 uglifyjs -o app/vendor/js/selectivizr.min.js components/selectivizr/selectivizr.js
 
 mkdir assets && cp ~/Dropbox/repositories/bash-script/GRUNTFILE-CHANGES assets/GRUNTFILE-CHANGES

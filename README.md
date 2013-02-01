@@ -35,4 +35,6 @@ Help script for yeoman-qs, overwrites the default package.json with one that has
 ### find-string #
 Wrapper around `grep -Hril "<string-to-find>"` either in the current directory, or in a directory sent through the second parameter
 
+### normalize #
+Goes into the ~/Dropbox/repositories/normalize.css repository and updates it, and then copies the normalize.css file into <optional path>/_normalize.scss to prepare it for being used in a Sassy project. If the <optional path> doesn't exist, it doesn't make it, though.
 

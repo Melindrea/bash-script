@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ -d "$1" ]; then
+	FILE=${1%/}"/_normalize.scss"
+else
+	FILE="_normalize.scss"
+fi
+#Assumes that normalize is in a repository in ~/Dropbox/repositories/normalize.css
+
+cd ~/Dropbox/repositories/normalize.css && git pull && cd -
+cp ~/Dropbox/repositories/normalize.css/normalize.css $FILE
+
