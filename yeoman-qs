@@ -15,7 +15,7 @@ cd ~/Dropbox/repositories/gitignore && git pull && cd -
 cat ~/Dropbox/repositories/gitignore/Global/Linux.gitignore ~/Dropbox/repositories/gitignore/Global/OSX.gitignore ~/Dropbox/repositories/gitignore/Global/SASS.gitignore ~/Dropbox/repositories/gitignore/Global/Windows.gitignore ~/Dropbox/repositories/gitignore/Node.gitignore ~/Dropbox/repositories/bash-script/Yeoman.gitignore > .gitignore
 
 if [ -z "$2"]; then
-	PACKAGE=$1
+	PACKAGE=${1//'/'/""}
 fi
 
 touch README.md
