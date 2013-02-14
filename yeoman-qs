@@ -28,10 +28,11 @@ npm install grunt-beautify --save-dev
 npm install grunt-modernizr --save-dev
 npm install grunt-shell --save-dev
 
-echo "Changing around Modernizr and jQuery (moving, etc), as well as installing selectivizr"
+echo "Changing around Modernizr and jQuery (moving, etc), as well as installing selectivizr and requirejs"
 yeoman install jquery
 yeoman install modernizr
 yeoman install selectivizr
+yeoman install requirejs
 
 echo "Removing the current jQuery/Modernizr and copying the dev version of modernizr and the min version of jquery to app/vendor/js"
 rm -r app/scripts/vendor
@@ -43,6 +44,7 @@ normalize app/styles
 mkdir -p app/vendor/js
 cp components/modernizr/modernizr.js app/vendor/js/modernizr.dev.js
 cp components/jquery/jquery.min.js app/vendor/js/jquery.min.js
+cp components/requirejs/require.js app/vendor/js/require.js
 echo "Minifying Selectivizr from components to app/vendor/js"
 uglifyjs -o app/vendor/js/selectivizr.min.js components/selectivizr/selectivizr.js
 

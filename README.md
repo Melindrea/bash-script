@@ -14,7 +14,7 @@ Mixed bash scripts. These do not come with any kind of disclaimer, though I'd li
 Used to open all files (non-recursively) in a specified folder in gedit. Called using `gedit-dir <glob>`, for instance `/home/melindrea/*`
 
 ### yeoman-qs & yeoman-build #
-Requires yeoman (duh), as well as the repository [Gitignore](https://github.com/github/gitignore) stored in a Dropbox (yeoman-qs). The build assumes a few things, in particular that there is a js task which in my case concats the development scripts, as I don't like CoffeeScript.
+Requires yeoman (duh), as well as the repository [Gitignore](https://github.com/github/gitignore) stored in a Dropbox (yeoman-qs). The build assumes a few things, in particular that there is a js task which in my case concats the development scripts, as I don't like CoffeeScript. Yeoman-qs should eventually be replaced with a generator.
 
 Yeoman-qs creates a quickstart yeoman project and needs the argument of a folder to be created as the root of the project at the minimum, ex `yeoman-qs /home/melindrea/projects/my-project`. It also creates a .gitignore file in that folder and creates a git repository with the initial commit, as well as changing around the jquery and modernizr folders (moving scripts/vendor => vendor/js)
 

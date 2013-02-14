@@ -89,3 +89,8 @@ grunt.loadNpmTasks('grunt-modernizr');
 grunt.loadNpmTasks('grunt-shell');
 
 grunt.registerTask('js', 'beautify lint');
+
+//Stuff to get the AMD script up and running...
+<!-- build:js scripts/amd-app.js -->
+    <script data-main="scripts/main" src="vendor/js/require.js"></script>
+<!-- endbuild -->
