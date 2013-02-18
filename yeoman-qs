@@ -46,6 +46,8 @@ cp components/jquery/jquery.min.js app/vendor/js/jquery.min.js
 echo "Minifying Selectivizr from components to app/vendor/js"
 uglifyjs -o app/vendor/js/selectivizr.min.js components/selectivizr/selectivizr.js
 
+mv app/styles/main.css app/styles/main.scss
+
 mkdir assets && cp ~/Dropbox/repositories/bash-script/GRUNTFILE-CHANGES assets/GRUNTFILE-CHANGES
 
 #Finally, initialize git. This is the last task to avoid some of the stuff needing to be re-committed
