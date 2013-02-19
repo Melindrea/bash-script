@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="hero-unit">
+        <h1>Wotcha!</h1>
+        <p>You now have</p>
+        <ul>
+            <li>HTML5 Boilerplate</li>
+            <li>jQuery</li>
+            <li>Modernizr</li>
+            <li>Mocha</li>
+            <li>Selectivizr</li>
+            <li>Normalize</li>
+        </ul>
+        <p>installed.</p>
+        <h3>Enjoy coding! - Yeoman</h3>
+    </div>
+</div>
+

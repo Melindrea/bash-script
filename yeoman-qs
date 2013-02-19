@@ -12,10 +12,10 @@ yeoman init quickstart
 
 echo "Updating repository gitignore and setting up .gitignore"
 cd ~/Dropbox/repositories/gitignore && git pull && cd -
-cat ~/Dropbox/repositories/gitignore/Global/Linux.gitignore ~/Dropbox/repositories/gitignore/Global/OSX.gitignore ~/Dropbox/repositories/gitignore/Global/SASS.gitignore ~/Dropbox/repositories/gitignore/Global/Windows.gitignore ~/Dropbox/repositories/gitignore/Node.gitignore ~/Dropbox/repositories/bash-script/Yeoman.gitignore > .gitignore
+cat ~/Dropbox/repositories/gitignore/Global/Linux.gitignore ~/Dropbox/repositories/gitignore/Global/OSX.gitignore ~/Dropbox/repositories/gitignore/Global/SASS.gitignore ~/Dropbox/repositories/gitignore/Global/Windows.gitignore ~/Dropbox/repositories/gitignore/Node.gitignore ~/Dropbox/repositories/bash-script/templates/Yeoman.gitignore > .gitignore
 
-echo "Initializing a README.md with the MIT license. Needs to be edited with contributors and year"
-cat ~/Dropbox/repositories/bash-script/MIT-licence > README.md
+echo "Initializing a README.md with the MIT licence. Needs to be edited with contributors and year"
+cat ~/Dropbox/repositories/bash-script/templates/MIT-licence > README.md
 
 if [ -z "$2"]; then
 	PACKAGE=${1//'/'/""}
@@ -47,15 +47,21 @@ echo "Minifying Selectivizr from components to app/vendor/js"
 uglifyjs -o app/vendor/js/selectivizr.min.js components/selectivizr/selectivizr.js
 
 mv app/styles/main.css app/styles/main.scss
+echo "\n@import \"normalize\";" >> app/styles/main.scss
+echo "@import \"compass\";" >> app/styles/main.scss
 
-mkdir assets && cp ~/Dropbox/repositories/bash-script/GRUNTFILE-CHANGES assets/GRUNTFILE-CHANGES
+cat ~/Dropbox/repositories/bash-script/templates/head ~/Dropbox/repositories/bash-script/templates/index ~/Dropbox/repositories/bash-script/templates/foot > app/index.html
+cat ~/Dropbox/repositories/bash-script/templates/head ~/Dropbox/repositories/bash-script/templates/elements ~/Dropbox/repositories/bash-script/templates/foot > app/elements.html
+
+cp ~/Dropbox/repositories/bash-script/templates/Gruntfile.js Gruntfile.js
+
+mkdir assets
 
 #Finally, initialize git. This is the last task to avoid some of the stuff needing to be re-committed
 git init
 #git add .
 #git commit -m "Initial commit"
-echo "Now the basics are done! Remember to update the index.html and 404.html files to reflect the move of libraries from scripts/vendor => vendor/js"
-echo "You will also need to update the Gruntfile.js, see GRUNTFILE-CHANGES"
+echo "Now the basics are done!"
 echo "JS files should be named *.dev.js during development, to be concatenated to something.js. Any development Sass-folders should be named *.dev."
 echo "Files with .dev in the name will be deleted from the dist folder when building using yeoman-build"
 echo "Update package.json with more information"
