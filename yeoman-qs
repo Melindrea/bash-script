@@ -3,8 +3,8 @@ E_BADARGS=65
 
 if [ -z "$1" ]
 	then
-  		echo "Usage: `basename $0` /path/to/folder/to/create <optional: package name> <optional: author>"
-  	exit $E_BADARGS  # No arg? Bail out.
+		echo "Usage: `basename $0` /path/to/folder/to/create <optional: package name> <optional: author>"
+	exit $E_BADARGS  # No arg? Bail out.
 fi
 echo "Creating folder $1"
 mkdir -p $1 && cd $1

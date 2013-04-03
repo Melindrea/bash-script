@@ -14,10 +14,10 @@ dist/*~
 dist/dist"
 for f in $FILES
 do
-	if [ -e $f ]; then
-    	echo "Cleaning up $f"
-		rm -r $f 
-	fi
+    if [ -e $f ]; then
+        echo "Cleaning up $f"
+        rm -r $f
+    fi
 done
 
 zip -r assets/dist dist
