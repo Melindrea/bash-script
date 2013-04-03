@@ -1,0 +1,36 @@
+#!/bin/bash
+
+E_BADARGS=65
+
+if [ -z "$1" ]
+    then
+        echo "Usage: `basename $0` theme-name <optional: path/to/theme>"
+    exit $E_BADARGS  # No arg? Bail out.
+fi
+
+declare -A THEMES
+
+THEMES[startpaket]='git@pineberry.beanstalkapp.com:/startpaket.git'
+THEMES[roots]='git://github.com/retlehs/roots.git'
+THEMES[underscores]='git://github.com/Automattic/_s.git'
+
+if test "${THEMES[$1]+isset}"
+    then
+        if [ -z "$2" ]
+            then
+                THEME_PATH='app/theme'
+            else
+                THEME_PATH=$2
+        fi
+
+        git clone ${THEMES[$1]} $THEME_PATH
+
+        find $THEME_PATH -path "*/.*"
+        read -p "Do you want to delete all these files? " -n 1 -r
+
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            find $THEME_PATH -path "*/.*" -exec rm -rf {} \;
+        fi
+    else
+        echo "$1 not defined"
+fi
