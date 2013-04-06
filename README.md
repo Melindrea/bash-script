@@ -40,8 +40,8 @@ Wrapper around `grep -Hril "<string-to-find>"` either in the current directory, 
 ### normalize #
 Goes into the ~/Dropbox/repositories/normalize.css repository and updates it, and then copies the normalize.css file into <optional path>/_normalize.scss to prepare it for being used in a Sassy project. If the <optional path> doesn't exist, it doesn't make it, though.
 
-### install-dependencies #
-Needs to be copied into the root of the project. Checks for the existance of config files, then runs `bower install`, `bundle install` and/or `npm install` depending on what config files where found.
+### installation #
+Needs to be copied into the root of the project. Checks for the existance of config files, then runs `bower install`, `bundle install`, `php-composer install --dev` and/or `npm install` depending on what config files where found. Also links any git hooks from the `hooks` directory to `.git/hooks`.
 
 ### theme-init #
 Script to clone a starting them (for the moment `roots` and `undescores`) into a specified folder, or app/theme

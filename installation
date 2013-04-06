@@ -1,0 +1,36 @@
+#!/bin/bash
+
+declare -A COMMANDS
+
+COMMANDS[bundle]='Gemfile'
+COMMANDS[npm]='package.json'
+COMMANDS[bower]='component.json'
+COMMANDS[php-composer]='composer.json'
+
+echo "Installing dependencies"
+for command in "${!COMMANDS[@]}"
+do
+    file=${COMMANDS[$command][0]}
+    switches=''
+
+    if [[ "${command}" = 'php-composer' ]]; then
+        switches='--dev'
+    fi
+
+    if [ -f "$file" ]; then
+        ${command} install ${switches}
+    fi
+done
+
+echo "Preparing Git and hooks"
+git init
+
+shopt -s nullglob
+for file in hooks/*
+do
+    if [ -f "$file" ]; then
+        rm .git/${file}.sample
+        rm .git/${file}
+        ln -s $PWD'/'${file} .git/${file}
+    fi
+done
